@@ -5,19 +5,13 @@
       <form class="ui-search-bar__form" @submit.prevent="$emit('on-submit', value)" action=".">
         <div class="ui-search-mask" @click="touch" v-show="!isFixed && autoFixed"></div>
         <div class="ui-search-bar__box">
-          <!-- <i class="ui-icon-search"></i> -->
-          <!-- <icon-button class="ui-icon-search" :size="14" icon="search"></icon-button> -->
           <icon class="ui-icon-search" :size="14" value="search"></icon>
           <input type="search" class="ui-search-bar__input" :id="`search_input_${uuid}`" :placeholder="placeholder" autocomplete="off" :required="required" v-model="currentValue" ref="input"
           @focus="onFocus"
           @blur="onBlur"/>
-          <!-- <a href="javascript:" class="ui-icon-clear" @click="clear" v-show="currentValue"></a> -->
-          <!-- <icon-button class="ui-icon-clear" :size="20" icon="cancel-circle" @click.native="clear" v-show="currentValue"></icon-button> -->
           <icon class="ui-icon-clear" :size="20" value="cancel-circle" @click.native="clear" v-show="currentValue"></icon>
         </div>
         <label :for="`search_input_${uuid}`" class="ui-search-bar__label" v-show="!isFocus && !value">
-          <!-- <i class="ui-icon-search"></i> -->
-          <!-- <icon-button class="ui-icon-search" :size="14" icon="search"></icon-button> -->
           <icon class="ui-icon-search" :size="14" value="search"></icon>
           <span>{{placeholder}}</span>
         </label>
