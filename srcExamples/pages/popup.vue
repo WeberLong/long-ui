@@ -13,7 +13,7 @@
     </button-area>
   </scroll-view>
   <popup position="bottom" class="demo-popup-bottom" :open="bottomPopup" @close="close('bottom')">
-    <div class="demo-bar">
+    <div class="demo-popup-bar">
       <span>弹出</span>
       <a href="javascript:;" class="demo-link" @click.native="close('bottom')">关闭</a>
     </div>
@@ -78,7 +78,7 @@ export default {
 .demo-popup-bottom {
   width: 100%;
 }
-.demo-bar{
+.demo-popup-bar{
   width: 100%;
   height: 48px;
   display: flex;
