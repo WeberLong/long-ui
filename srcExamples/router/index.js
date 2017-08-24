@@ -195,10 +195,10 @@ export default new Router({
       }
     },
     {
-      path: '/actionsheet',
-      name: 'actionsheet',
+      path: '/actionSheet',
+      name: 'actionSheet',
       component: (resolve) => {
-        require(['../pages/actionsheet'], resolve)
+        require(['../pages/actionSheet'], resolve)
       }
     },
     {
