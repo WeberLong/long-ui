@@ -34,7 +34,7 @@ export default {
 }
 </script>
 
-<style lang="css">
+<style lang="css" scoped>
 .header-bar-demo{
   margin-top: 16px;
 }

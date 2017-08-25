@@ -146,7 +146,7 @@ export default {
 }
 </script>
 
-<style lang="css">
+<style lang="css" scoped>
 .ks-grid div[class*="col-"] {
     background: #fff;
     text-align: center;

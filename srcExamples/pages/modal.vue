@@ -158,7 +158,7 @@ export default {
 }
 </script>
 
-<style lang="css">
+<style lang="css" scoped>
 .demo-select-modal{
   display: flex;
   flex-direction: column;

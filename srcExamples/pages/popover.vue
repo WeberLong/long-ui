@@ -91,14 +91,14 @@ export default {
 }
 </script>
 
-<style lang="css">
-.vc-list.demo-popver-list{
+<style lang="css" scoped>
+.ui-list.demo-popver-list{
   margin: 0;
 }
-.vc-list.demo-popver-list .vc-item:after{
+.ui-list.demo-popver-list .ui-item:after{
   content: none;
 }
-.vc-center-block{
+.ui-center-block{
   display: flex;
   align-items: center;
 }

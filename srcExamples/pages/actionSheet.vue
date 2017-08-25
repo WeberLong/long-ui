@@ -86,7 +86,7 @@ export default {
 }
 </script>
 
-<style lang="css">
+<style lang="css" scoped>
 .center-block{
   display: flex;
   align-items: center;

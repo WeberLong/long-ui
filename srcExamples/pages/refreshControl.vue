@@ -57,7 +57,7 @@ export default {
 }
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
 .refresh-desc {
   text-align: center;
 }

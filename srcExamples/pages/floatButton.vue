@@ -27,7 +27,7 @@ export default {
 }
 </script>
 
-<style lang="css">
+<style lang="css" scoped>
 .demo-float-button{
   display: flex;
   justify-content: flex-start;

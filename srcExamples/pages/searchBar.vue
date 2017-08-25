@@ -88,7 +88,7 @@ function getResult (val) {
 }
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
   .demo-bar {
     width: 100%;
     position: absolute;

@@ -72,7 +72,7 @@ export default {
 }
 </script>
 
-<style lang="css">
+<style lang="css" scoped>
 .icon-item{
   display: inline-block;
 }

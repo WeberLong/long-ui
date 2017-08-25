@@ -81,7 +81,7 @@ export default {
 }
 </script>
 
-<style lang="css">
+<style lang="css" scoped>
 .inline-content-block{
     display: flex;
     justify-content: flex-start;
