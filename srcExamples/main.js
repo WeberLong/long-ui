@@ -11,9 +11,6 @@ Vue.use(LongUI)
 
 Vue.config.productionTip = false
 
-console.log('000')
-console.log(LongUI)
-
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

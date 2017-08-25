@@ -76,7 +76,6 @@ export default {
     if (this.value) {
       this.currentValue = this.value
     }
-    // this.uuid = Math.random().toString(36).substring(3, 8)
     console.log(`uuid=${this.uuid}`)
   },
   computed: {

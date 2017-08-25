@@ -108,7 +108,6 @@ export default {
       if (this.dateEnd.value < this.dateStart.value) {
         this.dateEnd = this.dateSlots[1].values[this.dateSlots[0].values.indexOf(this.dateStart)]
       }
-      // this.$set('dates', [this.dateStart, this.dateEnd])
       this.dates = [this.dateStart, this.dateEnd]
     },
     changeDate (value) {
@@ -124,8 +123,6 @@ export default {
       if (values[0] !== this.addressProvince) {
         arr = address[values[0]]
         this.addressSlots[1].values = arr
-        console.log(this.addressSlots[1])
-        // this.addressSlots[1] = this.addressSlots
         this.addressCity = arr[0]
       }
       this.addressProvince = values[0]

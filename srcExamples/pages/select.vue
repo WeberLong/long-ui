@@ -47,9 +47,7 @@ export default {
       window.history.back()
     },
     handleFocusChange (val) {
-      console.log('handleFocusChange')
       console.log(val)
-      // this.focus = val
     }
   }
 }

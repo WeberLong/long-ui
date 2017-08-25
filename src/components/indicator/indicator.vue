@@ -13,7 +13,7 @@
       </div>
     </modal>
     <transition name="ui-modal-scale">
-      <div v-if="type === 'toast'" class="ui-overlay" :style="{'opacity': overlayOpacity}"></div>
+      <div v-if="type === 'toast'" class="ui-indicator-overlay" :style="{'opacity': overlayOpacity}"></div>
     </transition>
   </div>
 </template>
@@ -75,7 +75,7 @@ export default {
   margin-top: 12px;
 }
 
-.ui-overlay {
+.ui-indicator-overlay {
   position: fixed;
   left: 0;
   right: 0;

@@ -55,8 +55,6 @@
 </template>
 
 <script>
-console.log(this)
-console.log('999')
 export default {
   data () {
     return {

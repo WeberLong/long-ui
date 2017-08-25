@@ -128,7 +128,6 @@ export default {
         show: true
       }
       this.$refs.prompt.open()
-      console.log(this.prompt)
     },
     handlerSure (input) {
       if (input) {
@@ -151,7 +150,6 @@ export default {
       console.log('取消')
     },
     modelChange (val) {
-      console.log('modelChange')
       console.log(val)
     }
   }

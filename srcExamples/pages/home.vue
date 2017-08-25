@@ -187,7 +187,7 @@ export default {
       this.$router.push(link)
     },
     goGithub () {
-      window.open('https://github.com/WeberLong')
+      window.open('https://github.com/WeberLong/long-ui')
     }
   }
 }
@@ -206,9 +206,7 @@ export default {
   width: 80px;
   height: 80px;
   background-color: #666;
-  /* background-color: #f5f6f7; */
   color: #fff;
-  /* border-radius: 50%; */
   display: flex;
   justify-content: center;
   align-items: center;

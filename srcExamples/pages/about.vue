@@ -19,7 +19,7 @@ export default {
       window.history.back()
     },
     go () {
-      window.open('https://github.com/WeberLong')
+      window.open('https://github.com/WeberLong/long-ui')
     }
   }
 }

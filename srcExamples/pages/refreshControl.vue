@@ -41,7 +41,6 @@ export default {
       window.history.back()
     },
     refresh () {
-      console.log('---------------------refresh----------------------')
       this.refreshing = true
       setTimeout(() => {
         this.refreshing = false

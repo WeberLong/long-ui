@@ -22,7 +22,7 @@
     </div>
   </transition>
   <transition name="ui-modal-scale">
-    <div class="ui-overlay" v-if="isShow" @click="hideModel" @touchmove="prevent" :style="{'z-index': overlayZIndex}"></div>
+    <div class="ui-modal-overlay" v-if="isShow" @click="hideModel" @touchmove="prevent" :style="{'z-index': overlayZIndex}"></div>
   </transition>
 </div>
 </template>
@@ -142,7 +142,7 @@ export default {
   }
 }
 
-.ui-overlay {
+.ui-modal-overlay {
   position: fixed;
   left: 0;
   right: 0;

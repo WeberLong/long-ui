@@ -60,8 +60,6 @@ export default {
       window.history.back()
     },
     showMsg (val) {
-      console.log('val')
-      console.log(val)
       this.modal.msg = val.name
       this.modal.show = true
       this.$refs.modal.open()
