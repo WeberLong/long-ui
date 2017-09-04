@@ -1,5 +1,9 @@
 # long-ui
 
+#### 一个基于Vue2.x的移动端UI long-ui
+
+Demo: <a href="http://long.httpds.com/"> http://long.httpds.com/ </a>
+
 > UI
 
 ## Build Setup
@@ -8,11 +12,14 @@
 # install dependencies
 npm install
 
-# serve with hot reload at localhost:8080
+# serve with hot reload at localhost:8088
 npm run dev
 
 # build for production with minification
 npm run build
+
+# build for production with minification
+npm run examples
 
 # build for production and view the bundle analyzer report
 npm run build --report
