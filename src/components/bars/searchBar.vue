@@ -303,6 +303,9 @@ export default {
     text-align: center;
     color: #9B9B9B;
     background: #FFFFFF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     span {
         display: inline-block;
         font-size: 14px;
