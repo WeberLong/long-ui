@@ -98,6 +98,7 @@ function getResult (val) {
     z-index: 100;
   }
   .demo-content {
+    width: 100%;
     padding-top: 54px;
   }
 </style>
