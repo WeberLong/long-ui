@@ -5,7 +5,8 @@
       <span>Search Bar</span>
     </header-bar>
     <div class="demo-content">
-      <img src="http://vuejs.org/images/logo.png" style="width: 100%">
+      <img src="../assets/logo.png" style="width:100%">
+      <!-- <img src="http://vuejs.org/images/logo.png" style="width: 100%"> -->
       <search-bar
       @result-click="resultClick"
       @on-change="getResult"
