@@ -44,6 +44,7 @@
           })
         }
       })
+      console.log(this.alphabet)
     }
   }
 </script>

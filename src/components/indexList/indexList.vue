@@ -1,6 +1,6 @@
 <template>
   <div class="ui-indexlist">
-    <div class="ui-indexlist-content" ref="content" :style="{ 'height': currentHeight + 'px', 'margin-right': navWidth + 'px'}">
+    <div class="ui-indexlist-content" ref="content" :style="{ 'height': currentHeight + 'px'}">
       <slot></slot>
     </div>
     
@@ -35,7 +35,7 @@
     data () {
       return {
         sections: [],
-        navWidth: 0,
+        // navWidth: 0,
         indicatorTime: null,
         moving: false,
         firstSection: null,
@@ -58,13 +58,23 @@
 
     methods: {
       init () {
-        this.$nextTick(() => {
-          this.navWidth = this.$refs.nav.clientWidth
-        })
+        // this.$nextTick(() => {
+        //   this.navWidth = this.$refs.nav.clientWidth
+        // })
         let listItems = this.$refs.content.getElementsByTagName('p')
         if (listItems.length > 0) {
           this.firstSection = listItems[0]
         }
+      },
+
+      // handleContentTouchMove (e) {
+      //   e.preventDefault()
+      //   this.scrollContent(e.changedTouches[0].clientY)
+      // },
+
+      scrollContent () {
+        let y = document.getElementsByClassName('ui-indexlist-content')[0].scrollTop
+        console.log(y)
       },
 
       handleTouchStart (e) {
@@ -116,6 +126,12 @@
         this.currentHeight = document.documentElement.clientHeight - this.$refs.content.getBoundingClientRect().top
       }
       this.init()
+      console.log(document.getElementsByClassName('ui-indexlist-content'))
+      document.getElementsByClassName('ui-indexlist-content')[0].addEventListener('scroll', this.scrollContent, false)
+    },
+
+    beforeDestroy () {
+      document.getElementsByClassName('ui-indexlist-content')[0].removeEventListener('scroll', this.scrollContent, false)
     }
   }
 </script>
@@ -138,8 +154,10 @@
       bottom: 0;
       right: 0;
       margin: 0;
-      background-color: #fff;
-      border-left: solid 1px #ddd;
+      // background-color: #fff;
+
+      background-color: rgba(255, 255, 255, 0);
+      // border-left: solid 1px #ddd;
       text-align: center;
       max-height: 100%;
       display: flex;
