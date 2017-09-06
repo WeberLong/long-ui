@@ -125,6 +125,10 @@
       if (!this.currentHeight) {
         this.currentHeight = document.documentElement.clientHeight - this.$refs.content.getBoundingClientRect().top
       }
+      console.log('this.currentHeight:')
+      console.log(document.documentElement.clientHeight)
+      console.log(this.$refs.content.getBoundingClientRect().top)
+      console.log(this.currentHeight)
       this.init()
       console.log(document.getElementsByClassName('ui-indexlist-content'))
       document.getElementsByClassName('ui-indexlist-content')[0].addEventListener('scroll', this.scrollContent, false)
