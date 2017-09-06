@@ -128,6 +128,7 @@
       console.log('this.currentHeight:')
       console.log(document.documentElement.clientHeight)
       console.log(this.$refs.content.getBoundingClientRect().top)
+      console.log(this.$refs.content)
       console.log(this.currentHeight)
       this.init()
       console.log(document.getElementsByClassName('ui-indexlist-content'))
