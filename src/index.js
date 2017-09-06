@@ -8,6 +8,7 @@ import badge from './components/badge/badge'
 import circular from './components/circular/circular'
 import refreshControl from './components/refreshControl/refreshControl'
 import infiniteScroll from './components/infiniteScroll/infiniteScroll'
+import indexList from './components/indexList/indexList'
 
 // button
 import buttonArea from './components/button/buttonArea'
@@ -95,6 +96,7 @@ var components = {
   circular,
   'refresh-control': refreshControl,
   'infinite-scroll': infiniteScroll,
+  'index-list': indexList,
   'button-area': buttonArea,
   'button-row': buttonRow,
   Button,

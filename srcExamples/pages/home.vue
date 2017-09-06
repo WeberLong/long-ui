@@ -65,6 +65,10 @@ export default {
           icon: 'move-up',
           title: 'Infinite Scroll',
           link: '/infiniteScroll'
+        }, {
+          icon: 'sort-alpha-asc',
+          title: 'Index List',
+          link: '/indexList'
         }]
       }, {
         title: 'CSS',

@@ -62,6 +62,13 @@ export default new Router({
       }
     },
     {
+      path: '/indexList',
+      name: 'indexList',
+      component: (resolve) => {
+        require(['../pages/indexList'], resolve)
+      }
+    },
+    {
       path: '/headerBar',
       name: 'headerBar',
       component: (resolve) => {
