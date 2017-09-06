@@ -123,11 +123,12 @@
         this.sections = this.indexs
       }
       if (!this.currentHeight) {
-        this.currentHeight = document.documentElement.clientHeight - this.$refs.content.getBoundingClientRect().top
+        this.currentHeight = document.documentElement.clientHeight - (document.getElementsByClassName('ui-header-bar')[0].clientHeight + 1)
       }
       console.log('this.currentHeight:')
       console.log(document.documentElement.clientHeight)
       console.log(this.$refs.content.getBoundingClientRect().top)
+      // console.log(document.getElementsByClassName('ui-header-bar')[0].clientHeight + 1)
       console.log(this.$refs.content)
       console.log(this.currentHeight)
       this.init()
