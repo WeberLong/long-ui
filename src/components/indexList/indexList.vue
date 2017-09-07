@@ -86,7 +86,6 @@
         const listHeight = this.listHeight
         const sections = this.sections
         let y = document.getElementsByClassName('ui-indexlist-content')[0].scrollTop
-        console.log(y)
         // 当滚动到顶部，y<=0
         if (y <= 0) {
           this.currentFloor = sections[0]
@@ -206,6 +205,7 @@
       bottom: 0;
       right: 0;
       margin: 0;
+      padding-right: 6px;
       // background-color: #fff;
 
       background-color: rgba(255, 255, 255, 0);
@@ -215,11 +215,6 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
-    }
-    .active-nav {
-      background: #7e848c;
-      color: #fff;
-      border-radius: 50%;
     }
     
     .ui-indexlist-navlist {
@@ -232,10 +227,16 @@
     }
     
     .ui-indexlist-navitem {
-      padding: 2px 6px;
-      font-size: 12px;
+      padding: 0 1.2px;
+      line-height: 1.2;
+      font-size: 10px;
       user-select: none;
       -webkit-touch-callout: none;
+    }
+    .active-nav {
+      background: #7e848c;
+      color: #fff;
+      border-radius: 50%;
     }
 
     .ui-indexlist-fixed {
