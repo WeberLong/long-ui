@@ -175,11 +175,11 @@
       this.currentFloor = this.sections[0]
 
       this.init()
-      document.getElementsByClassName('ui-indexlist-content')[0].addEventListener('scroll', this.scrollContent, false)
+      document.getElementsByClassName('ui-indexlist-content')[0].addEventListener('touchmove', this.scrollContent, false)
     },
 
     beforeDestroy () {
-      document.getElementsByClassName('ui-indexlist-content')[0].removeEventListener('scroll', this.scrollContent, false)
+      document.getElementsByClassName('ui-indexlist-content')[0].removeEventListener('touchmove', this.scrollContent, false)
     }
   }
 </script>
