@@ -86,6 +86,7 @@
         const listHeight = this.listHeight
         const sections = this.sections
         let y = document.getElementsByClassName('ui-indexlist-content')[0].scrollTop
+        console.log(y)
         // 当滚动到顶部，y<=0
         if (y <= 0) {
           this.currentFloor = sections[0]
@@ -175,13 +176,13 @@
       this.currentFloor = this.sections[0]
 
       this.init()
-      document.getElementsByClassName('ui-indexlist-content')[0].addEventListener('touchstart', this.scrollContent, false)
-      document.getElementsByClassName('ui-indexlist-content')[0].addEventListener('touchmove', this.scrollContent, false)
+      document.getElementsByClassName('ui-indexlist-content')[0].addEventListener('scroll', this.scrollContent, false)
+      document.getElementsByClassName('ui-indexlist-content')[0].addEventListener('touchend', this.scrollContent, false)
     },
 
     beforeDestroy () {
-      document.getElementsByClassName('ui-indexlist-content')[0].removeEventListener('touchstart', this.scrollContent, false)
-      document.getElementsByClassName('ui-indexlist-content')[0].removeEventListener('touchmove', this.scrollContent, false)
+      document.getElementsByClassName('ui-indexlist-content')[0].removeEventListener('scroll', this.scrollContent, false)
+      document.getElementsByClassName('ui-indexlist-content')[0].removeEventListener('touchend', this.scrollContent, false)
     }
   }
 </script>
