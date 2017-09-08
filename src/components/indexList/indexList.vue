@@ -176,12 +176,12 @@
 
       this.init()
       document.getElementsByClassName('ui-indexlist-content')[0].addEventListener('scroll', this.scrollContent, false)
-      document.getElementsByClassName('ui-indexlist-content')[0].addEventListener('touchend', this.scrollContent, false)
+      // document.getElementsByClassName('ui-indexlist-content')[0].addEventListener('touchend', this.scrollContent, false)
     },
 
     beforeDestroy () {
       document.getElementsByClassName('ui-indexlist-content')[0].removeEventListener('scroll', this.scrollContent, false)
-      document.getElementsByClassName('ui-indexlist-content')[0].removeEventListener('touchend', this.scrollContent, false)
+      // document.getElementsByClassName('ui-indexlist-content')[0].removeEventListener('touchend', this.scrollContent, false)
     }
   }
 </script>
@@ -193,9 +193,10 @@
     overflow: hidden;
 
     .ui-indexlist-content {
+      position: relative;
       margin: 0;
       padding: 0;
-      overflow: auto;
+      overflow: scroll;
       -webkit-overflow-scrolling: touch;
     }
     

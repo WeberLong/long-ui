@@ -111,14 +111,28 @@ export default {
     }
   },
   mounted () {
-    this.$refs.selectModalBody.addEventListener('scroll', this.scrollContent, false)
+    this.$refs.selectModalBody.addEventListener('touchstart', this.handleTouchStart, false)
+    // this.$refs.selectModalBody.addEventListener('touchmove', this.scrollContent, false)
   },
   beforeDestroy () {
-    this.$refs.selectModalBody.removeEventListener('scroll', this.scrollContent, false)
+    this.$refs.selectModalBody.removeEventListener('touchstart', this.handleTouchStart, false)
+    // this.$refs.selectModalBody.removeEventListener('touchmove', this.scrollContent, false)
   },
   methods: {
     back () {
       window.history.back()
+    },
+    handleTouchStart () {
+      this.scrollContent()
+      this.$refs.selectModalBody.addEventListener('touchmove', this.handleTouchMove, false)
+      this.$refs.selectModalBody.addEventListener('touchend', this.handleTouchEnd, false)
+    },
+    handleTouchMove () {
+      this.scrollContent()
+    },
+    handleTouchEnd () {
+      this.$refs.selectModalBody.removeEventListener('touchmove', this.handleTouchMove, false)
+      this.$refs.selectModalBody.removeEventListener('touchend', this.handleTouchEnd, false)
     },
     scrollContent () {
       let y = this.$refs.selectModalBody.scrollTop
@@ -189,8 +203,8 @@ export default {
   display: flex;
   flex-direction: column;
   max-height: 140px;
-  overflow:scroll;
-  -webkit-overflow-scrolling:touch;
+  overflow: scroll;
+  -webkit-overflow-scrolling: touch;
 }
 .login-modal .ui-item-form{
   padding: 0;
