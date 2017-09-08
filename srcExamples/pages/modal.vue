@@ -49,12 +49,27 @@
 
   <modal title="Select Modal" ref="selectModal">
     <div class="">
-      选择一个你喜欢的
+      选择一个你喜欢的 y: {{y}}
     </div>
-    <div class="demo-select-modal">
+    <div class="demo-select-modal" ref="selectModalBody">
+      <radio :model="radio" name="demoModal" value="守望先锋" label="守望先锋"></radio>
       <radio :model="radio" name="demoModal" value="守望先锋" label="守望先锋"></radio>
       <radio :model="radio" name="demoModal" value="英雄联盟" label="英雄联盟"></radio>
+      <radio :model="radio" name="demoModal" value="英雄联盟" label="英雄联盟"></radio>
+      <radio :model="radio" name="demoModal" value="英雄联盟" label="英雄联盟"></radio>
       <radio :model="radio" name="demoModal" value="精灵宝可梦go" label="精灵宝可梦go"></radio>
+      <radio :model="radio" name="demoModal" value="精灵宝可梦go" label="精灵宝可梦go"></radio>
+      <radio :model="radio" name="demoModal" value="精灵宝可梦go" label="精灵宝可梦go"></radio>
+      <radio :model="radio" name="demoModal" value="精灵宝可梦go" label="精灵宝可梦go"></radio>
+      <radio :model="radio" name="demoModal" value="王者荣耀" label="王者荣耀"></radio>
+      <radio :model="radio" name="demoModal" value="王者荣耀" label="王者荣耀"></radio>
+      <radio :model="radio" name="demoModal" value="王者荣耀" label="王者荣耀"></radio>
+      <radio :model="radio" name="demoModal" value="王者荣耀" label="王者荣耀"></radio>
+      <radio :model="radio" name="demoModal" value="王者荣耀" label="王者荣耀"></radio>
+      <radio :model="radio" name="demoModal" value="王者荣耀" label="王者荣耀"></radio>
+      <radio :model="radio" name="demoModal" value="王者荣耀" label="王者荣耀"></radio>
+      <radio :model="radio" name="demoModal" value="王者荣耀" label="王者荣耀"></radio>
+      <radio :model="radio" name="demoModal" value="王者荣耀" label="王者荣耀"></radio>
       <radio :model="radio" name="demoModal" value="王者荣耀" label="王者荣耀"></radio>
     </div>
   </modal>
@@ -91,12 +106,24 @@ export default {
       },
       prompt: {
         show: false
-      }
+      },
+      y: 0
     }
+  },
+  mounted () {
+    this.$refs.selectModalBody.addEventListener('scroll', this.scrollContent, false)
+  },
+  beforeDestroy () {
+    this.$refs.selectModalBody.removeEventListener('scroll', this.scrollContent, false)
   },
   methods: {
     back () {
       window.history.back()
+    },
+    scrollContent () {
+      let y = this.$refs.selectModalBody.scrollTop
+      console.log(y)
+      this.y = y
     },
     showModal (ref) {
       this.$refs[ref].open()
@@ -158,8 +185,12 @@ export default {
 
 <style lang="css" scoped>
 .demo-select-modal{
+  position: relative;
   display: flex;
   flex-direction: column;
+  max-height: 140px;
+  overflow:scroll;
+  -webkit-overflow-scrolling:touch;
 }
 .login-modal .ui-item-form{
   padding: 0;
