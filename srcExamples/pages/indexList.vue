@@ -52,6 +52,10 @@
 </script>
 
 <style lang="less" scoped>
+.ui-header-bar {
+  position: fixed;
+  top: 0;
+}
 .ui-content-title {
   margin: 0;
   padding: 0 16px;
