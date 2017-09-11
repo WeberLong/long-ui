@@ -295,8 +295,8 @@
     }
   }
   #scroller {
-    // position: absolute;
-    // z-index: 1;
+    position: absolute;
+    z-index: 1;
     width: 100%;
     -webkit-transform: translateZ(0);
     -moz-transform: translateZ(0);
