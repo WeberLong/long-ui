@@ -90,7 +90,6 @@
         }
       },
       fixedTitleY (val) {
-        console.log(val)
         let fixedTop = (val > 0 && val < TITLE_HEIGHT) ? val - TITLE_HEIGHT : 0
         if (this.fixedTop === fixedTop) {
           return
@@ -182,13 +181,13 @@
       self.init()
       /* eslint-disable */
       self.myScroll = new IScroll('#wrapper', { probeType: 3, mouseWheel: true })
-      console.log(self.myScroll)
       self.myScroll.on('scroll', () => { self.scrollY = self.myScroll.y })
       self.myScroll.on('scrollEnd', () => { self.scrollY = self.myScroll.y })
-      document.addEventListener('touchmove', function (e) { e.preventDefault() }, self.isPassive() ? {
-        capture: false,
-        passive: false
-      } : false)
+      document.addEventListener(
+        'touchmove',
+        function (e) { e.preventDefault() },
+        self.isPassive() ? {capture: false, passive: false} : false
+      )
     },
 
     beforeDestroy () {
