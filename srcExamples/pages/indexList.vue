@@ -4,20 +4,18 @@
     <icon-button slot="left" @click.native="back" :size="36" icon="navigate_before"></icon-button>
     <span>Index List</span>
   </header-bar>
-  <div class="page-indexlist-wrapper">
-    <index-list :indexs="indexs">
-      <p v-for="(item, index) in alphabet" :key="index" :data-index="item.initial">
-        <content-title>{{item.initial}}</content-title>
-        <list>
-          <item-cell v-for="(cell, index) in item.cells" :key="index">
-            <item-title>
-              {{cell}}
-            </item-title>
-          </item-cell>
-        </list>
-      </p>
-    </index-list>
-  </div>
+  <index-list :indexs="indexs">
+    <p v-for="(item, index) in alphabet" :key="index" :data-index="item.initial">
+      <content-title>{{item.initial}}</content-title>
+      <list>
+        <item-cell v-for="(cell, index) in item.cells" :key="index">
+          <item-title>
+            {{cell}}
+          </item-title>
+        </item-cell>
+      </list>
+    </p>
+  </index-list>
 </div>
 </template>
 
@@ -54,10 +52,6 @@
 </script>
 
 <style lang="less" scoped>
-.page-indexlist-wrapper {
-  width: 100%;
-  border-top: solid 1px #ddd;
-}
 .ui-content-title {
   margin: 0;
   padding: 0 16px;

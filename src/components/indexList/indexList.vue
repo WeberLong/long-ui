@@ -1,27 +1,30 @@
 <template>
   <div class="ui-indexlist">
-    <div class="ui-indexlist-content" ref="content" :style="{ 'height': currentHeight + 'px'}">
-      <slot></slot>
-    </div>
-    
-    <div class="ui-indexlist-nav" @touchstart="handleTouchStart" ref="nav">
-      <ul class="ui-indexlist-navlist">
-        <li class="ui-indexlist-navitem" v-for="(section, index) in sections" :key="index" :data-nav="section"
-          :class="{'active-nav':currentIndicator===section}">
-          {{ section }}
-        </li>
-      </ul>
-    </div>
+    <!-- <div id="wrapper" class="ui-indexlist-content" ref="content" :style="{ 'height': currentHeight + 'px'}"> -->
+    <div id="wrapper" class="ui-indexlist-content" ref="content">
+      <div id="scroller">
+        <slot></slot>
+      </div>
+      <div class="ui-indexlist-nav" @touchstart="handleTouchStart" ref="nav">
+        <ul class="ui-indexlist-navlist">
+          <li class="ui-indexlist-navitem" v-for="(section, index) in sections" :key="index" :data-nav="section"
+            :class="{'active-nav':currentIndicator===section}">
+            {{ section }}
+          </li>
+        </ul>
+      </div>
 
-    <div class="ui-indexlist-fixed" ref="fixed">
-      <div class="fixed-title">{{currentFloor}}</div>
+      <div v-show="currentFloor" class="ui-indexlist-fixed" ref="fixed">
+        <div class="fixed-title">{{currentFloor}}</div>
+      </div>
+      
+      <div class="ui-indexlist-indicator" v-if="showIndicator" v-show="moving">{{ currentIndicator }}</div>
     </div>
-    
-    <div class="ui-indexlist-indicator" v-if="showIndicator" v-show="moving">{{ currentIndicator }}</div>
   </div>
 </template>
 
 <script>
+  import 'utils/iscroll-probe.js'
   const TITLE_HEIGHT = 24
   export default {
     name: 'ui-index-list',
@@ -42,6 +45,8 @@
 
     data () {
       return {
+        myScroll: null,
+        scrollY: 0,
         sections: [],
         listHeight: [],
         indicatorTime: null,
@@ -49,7 +54,6 @@
         firstSection: null,
         currentIndicator: '',
         currentFloor: '',
-        currentHeight: this.height,
         navOffsetX: 0,
         fixedTitleY: -1
       }
@@ -59,12 +63,34 @@
       sections () {
         this.init()
       },
-      height (val) {
-        if (val) {
-          this.currentHeight = val
+      scrollY (y) {
+        const listHeight = this.listHeight
+        const sections = this.sections
+        // 当滚动到顶部，y<=0
+        if (y > 0) {
+          this.currentFloor = ''
+          this.currentIndicator = ''
+          return
+        }
+        // 在中间部分滚动
+        for (let i = 0; i < listHeight.length; i++) {
+          let height1 = listHeight[i]
+          let height2 = listHeight[i + 1]
+          if (-y >= height1 && -y < height2) {
+            this.currentFloor = sections[i]
+            this.currentIndicator = sections[i]
+            this.fixedTitleY = height2 + y
+            return
+          }
+        }
+        // 当滚动到底部，且y大于最后一个元素的上限
+        if (-y >= listHeight.length - 1) {
+          this.currentFloor = sections[listHeight.length - 1]
+          this.currentIndicator = sections[listHeight.length - 1]
         }
       },
       fixedTitleY (val) {
+        console.log(val)
         let fixedTop = (val > 0 && val < TITLE_HEIGHT) ? val - TITLE_HEIGHT : 0
         if (this.fixedTop === fixedTop) {
           return
@@ -79,34 +105,6 @@
         let listItems = this.$refs.content.getElementsByTagName('p')
         if (listItems.length > 0) {
           this.firstSection = listItems[0]
-        }
-      },
-
-      scrollContent () {
-        const listHeight = this.listHeight
-        const sections = this.sections
-        let y = document.getElementsByClassName('ui-indexlist-content')[0].scrollTop
-        // 当滚动到顶部，y<=0
-        if (y <= 0) {
-          this.currentFloor = sections[0]
-          this.currentIndicator = sections[0]
-          return
-        }
-        // 在中间部分滚动
-        for (let i = 0; i < listHeight.length; i++) {
-          let height1 = listHeight[i]
-          let height2 = listHeight[i + 1]
-          if (y >= height1 && y < height2) {
-            this.currentFloor = sections[i]
-            this.currentIndicator = sections[i]
-            this.fixedTitleY = height2 - y
-            return
-          }
-        }
-        // 当滚动到底部，且y大于最后一个元素的上限
-        if (y >= listHeight.length - 1) {
-          this.currentFloor = sections[listHeight.length - 1]
-          this.currentIndicator = sections[listHeight.length - 1]
         }
       },
 
@@ -146,7 +144,8 @@
         this.currentIndicator = currentItem.innerText
         let targetDOM = this.$refs.content.querySelectorAll(`[data-index=${currentItem.innerText}]`)
         if (targetDOM.length > 0) {
-          this.$refs.content.scrollTop = targetDOM[0].getBoundingClientRect().top - this.firstSection.getBoundingClientRect().top
+          this.myScroll.scrollToElement(targetDOM[0], 0)
+          this.scrollY = this.myScroll.y
         }
       },
 
@@ -160,44 +159,70 @@
           height += item.clientHeight
           this.listHeight.push(height)
         }
+      },
+      isPassive () {
+        let supportsPassiveOption = false
+        try {
+          addEventListener('test', null, Object.defineProperty({}, 'passive', {
+            get: function () {
+              supportsPassiveOption = true
+            }
+          }))
+        } catch (e) {}
+        return supportsPassiveOption
       }
     },
 
     mounted () {
-      if (this.indexs.length) {
-        this.sections = this.indexs
+      const self = this
+      if (self.indexs.length) {
+        self.sections = self.indexs
       }
-      if (!this.currentHeight) {
-        this.currentHeight = document.documentElement.clientHeight - (document.getElementsByClassName('ui-header-bar')[0].clientHeight + 1)
-      }
-      this.calculateScrollHeight()
-      this.currentIndicator = this.sections[0]
-      this.currentFloor = this.sections[0]
-
-      this.init()
-      document.getElementsByClassName('ui-indexlist-content')[0].addEventListener('scroll', this.scrollContent, false)
-      // document.getElementsByClassName('ui-indexlist-content')[0].addEventListener('touchend', this.scrollContent, false)
+      self.calculateScrollHeight()
+      self.init()
+      /* eslint-disable */
+      self.myScroll = new IScroll('#wrapper', { probeType: 3, mouseWheel: true })
+      console.log(self.myScroll)
+      self.myScroll.on('scroll', () => { self.scrollY = self.myScroll.y })
+      self.myScroll.on('scrollEnd', () => { self.scrollY = self.myScroll.y })
+      document.addEventListener('touchmove', function (e) { e.preventDefault() }, self.isPassive() ? {
+        capture: false,
+        passive: false
+      } : false)
     },
 
     beforeDestroy () {
-      document.getElementsByClassName('ui-indexlist-content')[0].removeEventListener('scroll', this.scrollContent, false)
-      // document.getElementsByClassName('ui-indexlist-content')[0].removeEventListener('touchend', this.scrollContent, false)
+      this.myScroll.destroy()
+      this.myScroll = null
     }
   }
 </script>
 
 <style lang="less">
   .ui-indexlist {
+    position: fixed;
+    top: 54px;
+    right: 0;
+    bottom: 0;
+    left: 0;
     width: 100%;
-    position: relative;
-    overflow: hidden;
-
     .ui-indexlist-content {
+      // position: absolute;
+      // width: 100%;
+      // top: 0;
+      // bottom: 0;
+      // left: 0;
+      // margin: 0;
+      // padding: 0;
+      // overflow: hidden;
+      // z-index: 1;
+
       position: relative;
+      width: 100%;
+      height: 100%;
       margin: 0;
       padding: 0;
-      overflow: scroll;
-      -webkit-overflow-scrolling: touch;
+      overflow: hidden;
     }
     
     .ui-indexlist-nav {
@@ -207,15 +232,14 @@
       right: 0;
       margin: 0;
       padding-right: 6px;
-      // background-color: #fff;
 
       background-color: rgba(255, 255, 255, 0);
-      // border-left: solid 1px #ddd;
       text-align: center;
       max-height: 100%;
       display: flex;
       flex-direction: column;
       justify-content: center;
+      z-index: 2;
     }
     
     .ui-indexlist-navlist {
@@ -268,6 +292,27 @@
       border-radius: 5px;
       color: #fff;
       font-size: 22px;
+      z-index: 2;
     }
+  }
+  #scroller {
+    // position: absolute;
+    // z-index: 1;
+    width: 100%;
+    -webkit-transform: translateZ(0);
+    -moz-transform: translateZ(0);
+    -ms-transform: translateZ(0);
+    -o-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-text-size-adjust: none;
+    -moz-text-size-adjust: none;
+    -ms-text-size-adjust: none;
+    -o-text-size-adjust: none;
+    text-size-adjust: none;
   }
 </style>
