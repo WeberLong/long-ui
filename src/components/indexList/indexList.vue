@@ -1,6 +1,5 @@
 <template>
   <div class="ui-indexlist">
-    <!-- <div id="wrapper" class="ui-indexlist-content" ref="content" :style="{ 'height': currentHeight + 'px'}"> -->
     <div id="wrapper" class="ui-indexlist-content" ref="content">
       <div id="scroller">
         <slot></slot>
