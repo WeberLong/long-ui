@@ -238,7 +238,7 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
-      z-index: 2;
+      z-index: 18;
     }
     
     .ui-indexlist-navlist {
@@ -251,7 +251,7 @@
     }
     
     .ui-indexlist-navitem {
-      padding: 0 1.2px;
+      padding: 1px 2.2px;
       line-height: 1.2;
       font-size: 10px;
       user-select: none;
