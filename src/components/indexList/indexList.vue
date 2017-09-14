@@ -158,17 +158,17 @@
           this.listHeight.push(height)
         }
       },
-      isPassive () {
-        let supportsPassiveOption = false
-        try {
-          addEventListener('test', null, Object.defineProperty({}, 'passive', {
-            get: function () {
-              supportsPassiveOption = true
-            }
-          }))
-        } catch (e) {}
-        return supportsPassiveOption
-      }
+      // isPassive () {
+      //   let supportsPassiveOption = false
+      //   try {
+      //     addEventListener('test', null, Object.defineProperty({}, 'passive', {
+      //       get: function () {
+      //         supportsPassiveOption = true
+      //       }
+      //     }))
+      //   } catch (e) {}
+      //   return supportsPassiveOption
+      // }
     },
 
     mounted () {
@@ -182,21 +182,16 @@
       self.myScroll = new IScroll('#wrapper', { probeType: 3, mouseWheel: true })
       self.myScroll.on('scroll', () => { self.scrollY = self.myScroll.y })
       self.myScroll.on('scrollEnd', () => { self.scrollY = self.myScroll.y })
-      document.addEventListener(
-        'touchmove',
-        function (e) { e.preventDefault() },
-        self.isPassive() ? {capture: false, passive: false} : false
-      )
+      // document.addEventListener(
+      //   'touchmove',
+      //   function (e) { e.preventDefault() },
+      //   self.isPassive() ? {capture: false, passive: false} : false
+      // )
     },
 
     beforeDestroy () {
       this.myScroll.destroy()
       this.myScroll = null
-      document.removeEventListener(
-        'touchmove',
-        function (e) { e.preventDefault() },
-        self.isPassive() ? {capture: false, passive: false} : false
-      )
     }
   }
 </script>
