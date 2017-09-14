@@ -192,6 +192,11 @@
     beforeDestroy () {
       this.myScroll.destroy()
       this.myScroll = null
+      document.removeEventListener(
+        'touchmove',
+        function (e) { e.preventDefault() },
+        self.isPassive() ? {capture: false, passive: false} : false
+      )
     }
   }
 </script>
