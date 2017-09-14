@@ -157,7 +157,7 @@
           height += item.clientHeight
           this.listHeight.push(height)
         }
-      },
+      }
       // isPassive () {
       //   let supportsPassiveOption = false
       //   try {
