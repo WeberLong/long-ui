@@ -134,7 +134,7 @@
 
       scrollList (y) {
         let currentItem = document.elementFromPoint(this.navOffsetX, y)
-        if (currentItem || currentItem.classList.contains('ui-indexlist-navitem') || currentItem.classList.contains('ui-indexlist-navitem-inner')) {
+        if (currentItem.classList.contains('ui-indexlist-navitem') || currentItem.classList.contains('ui-indexlist-navitem-inner')) {
           this.currentIndicator = currentItem.innerText
           let targetDOM = this.$refs.content.querySelectorAll(`[data-index=${currentItem.innerText}]`)
           if (targetDOM.length > 0) {
