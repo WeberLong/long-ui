@@ -6,9 +6,8 @@
       </div>
       <div class="ui-indexlist-nav" @touchstart="handleTouchStart" ref="nav">
         <ul class="ui-indexlist-navlist">
-          <li class="ui-indexlist-navitem" v-for="(section, index) in sections" :key="index" :data-nav="section"
-            :class="{'active-nav':currentIndicator===section}">
-            {{ section }}
+          <li class="ui-indexlist-navitem" v-for="(section, index) in sections" :key="index" :data-nav="section">
+            <span class="ui-indexlist-navitem-inner" :class="{'active-nav':currentIndicator===section}">{{ section }}</span>
           </li>
         </ul>
       </div>
@@ -107,17 +106,16 @@
       },
 
       handleTouchStart (e) {
-        if (e.target.tagName !== 'LI') {
-          return
+        if (e.target.tagName === 'LI' || e.target.tagName === 'SPAN') {
+          this.navOffsetX = e.changedTouches[0].clientX
+          this.scrollList(e.changedTouches[0].clientY)
+          if (this.indicatorTime) {
+            clearTimeout(this.indicatorTime)
+          }
+          this.moving = true
+          window.addEventListener('touchmove', this.handleTouchMove)
+          window.addEventListener('touchend', this.handleTouchEnd)
         }
-        this.navOffsetX = e.changedTouches[0].clientX
-        this.scrollList(e.changedTouches[0].clientY)
-        if (this.indicatorTime) {
-          clearTimeout(this.indicatorTime)
-        }
-        this.moving = true
-        window.addEventListener('touchmove', this.handleTouchMove)
-        window.addEventListener('touchend', this.handleTouchEnd)
       },
 
       handleTouchMove (e) {
@@ -136,14 +134,13 @@
 
       scrollList (y) {
         let currentItem = document.elementFromPoint(this.navOffsetX, y)
-        if (!currentItem || !currentItem.classList.contains('ui-indexlist-navitem')) {
-          return
-        }
-        this.currentIndicator = currentItem.innerText
-        let targetDOM = this.$refs.content.querySelectorAll(`[data-index=${currentItem.innerText}]`)
-        if (targetDOM.length > 0) {
-          this.myScroll.scrollToElement(targetDOM[0], 0)
-          this.scrollY = this.myScroll.y
+        if (currentItem || currentItem.classList.contains('ui-indexlist-navitem') || currentItem.classList.contains('ui-indexlist-navitem-inner')) {
+          this.currentIndicator = currentItem.innerText
+          let targetDOM = this.$refs.content.querySelectorAll(`[data-index=${currentItem.innerText}]`)
+          if (targetDOM.length > 0) {
+            this.myScroll.scrollToElement(targetDOM[0], 0)
+            this.scrollY = this.myScroll.y
+          }
         }
       },
 
@@ -229,7 +226,7 @@
       bottom: 0;
       right: 0;
       margin: 0;
-      padding-right: 6px;
+      // padding-right: 6px;
 
       background-color: rgba(255, 255, 255, 0);
       text-align: center;
@@ -250,11 +247,19 @@
     }
     
     .ui-indexlist-navitem {
-      padding: 1px 2.2px;
+      // padding: 1px 2.2px;
+      // line-height: 1.2;
+      // font-size: 10px;
+      padding: 1px 6px;
       line-height: 1.2;
       font-size: 10px;
       user-select: none;
       -webkit-touch-callout: none;
+      .ui-indexlist-navitem-inner {
+        display: inline-block;
+        width: 16px;
+        height: 16px;
+      }
     }
     .active-nav {
       background: #7e848c;
