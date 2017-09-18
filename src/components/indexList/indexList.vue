@@ -247,9 +247,6 @@
     }
     
     .ui-indexlist-navitem {
-      // padding: 1px 2.2px;
-      // line-height: 1.2;
-      // font-size: 10px;
       padding: 1px 4px;
       line-height: 1.2;
       font-size: 10px;
@@ -257,9 +254,9 @@
       -webkit-touch-callout: none;
       .ui-indexlist-navitem-inner {
         display: inline-block;
-        width: 16px;
-        height: 16px;
-        line-height: 16px;
+        width: 14px;
+        height: 14px;
+        line-height: 14px;
         text-align: center;
       }
     }
