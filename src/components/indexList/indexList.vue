@@ -250,7 +250,7 @@
       // padding: 1px 2.2px;
       // line-height: 1.2;
       // font-size: 10px;
-      padding: 1px 6px;
+      padding: 1px 4px;
       line-height: 1.2;
       font-size: 10px;
       user-select: none;
@@ -259,6 +259,8 @@
         display: inline-block;
         width: 16px;
         height: 16px;
+        line-height: 16px;
+        text-align: center;
       }
     }
     .active-nav {
