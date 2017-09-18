@@ -21,8 +21,8 @@
     <router-link to="/dateSelect">
       <nav-menu @click.native="closeNav()" icon="calendar" title="Date Select"></nav-menu>
     </router-link>
-    <router-link to="/modal">
-      <nav-menu @click.native="closeNav()" icon="insert_comment" title="Modal"></nav-menu>
+    <router-link to="/indexList">
+      <nav-menu @click.native="closeNav()" icon="sort-alpha-asc" title="Index List"></nav-menu>
     </router-link>
     <nav-divider></nav-divider>
     <router-link to="/about">
