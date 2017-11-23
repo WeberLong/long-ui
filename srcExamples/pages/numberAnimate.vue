@@ -18,10 +18,11 @@
 export default {
   data () {
     return {
-      number: '99999999'
+      number: '66666666',
+      timer: null
     }
   },
-  created () {
+  activated () {
     this._interval()
   },
   methods: {
@@ -30,13 +31,18 @@ export default {
     },
     _interval () {
       const self = this
-      setInterval(function () {
+      this.timer = setInterval(function () {
         self.number = '' + self._random(self.number)
       }, 3500)
     },
     back () {
       window.history.back()
     }
+  },
+  deactivated () {
+    console.log('deactivated')
+    window.clearInterval(this.timer)
+    this.timer = null
   }
 }
 </script>

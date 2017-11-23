@@ -45,10 +45,8 @@
       init () {
         const self = this
         const listNode = document.querySelectorAll('[data-num]')
-        console.log(listNode)
         for (let i = 0; i < listNode.length; i++) {
           let num = listNode[i].getAttribute('data-num')
-          console.log(num)
           let nodeTop = -(num * listNode[i].clientHeight / 11)
           listNode[i].style.webkitTransform = `translateY(${nodeTop}px)`
           listNode[i].style.MozTransform = `translateY(${nodeTop}px)`
