@@ -69,6 +69,13 @@ export default new Router({
       }
     },
     {
+      path: '/numberAnimate',
+      name: 'numberAnimate',
+      component: (resolve) => {
+        require(['../pages/numberAnimate'], resolve)
+      }
+    },
+    {
       path: '/headerBar',
       name: 'headerBar',
       component: (resolve) => {
