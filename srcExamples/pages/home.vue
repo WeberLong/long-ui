@@ -69,6 +69,10 @@ export default {
           icon: 'sort-alpha-asc',
           title: 'Index List',
           link: '/indexList'
+        }, {
+          icon: 'sort-numeric-asc',
+          title: 'Number Animate',
+          link: '/numberAnimate'
         }]
       }, {
         title: 'CSS',

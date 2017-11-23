@@ -85,6 +85,7 @@ import navDrawer from './components/nav/navDrawer'
 import navMenu from './components/nav/navMenu'
 import navDivider from './components/nav/navDivider'
 import navMenuHeader from './components/nav/navMenuHeader'
+import numberAnimate from './components/numberAnimate/numberAnimate'
 
 var components = {
   'scroll-view': scrollView,
@@ -153,7 +154,8 @@ var components = {
   'nav-drawer': navDrawer,
   'nav-menu': navMenu,
   'nav-divider': navDivider,
-  'nav-menu-header': navMenuHeader
+  'nav-menu-header': navMenuHeader,
+  'number-animate': numberAnimate
 }
 
 export default {
