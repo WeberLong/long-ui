@@ -54,7 +54,7 @@ export default {
   z-index: 1000;
   transform: translate3d(-50%, 0, 0);
   .ui-toast-text{
-    font-size: 1.4rem;
+    font-size: 14px;
     display: block;
     text-align: center;
   }
