@@ -57,4 +57,25 @@ export default {
   transform: translate3d(100%, 0, 0);
   overflow: hidden;
 }
+
+.nav-drawer-shadow {
+  box-shadow: 4px 0 18px 6px rgba(0,0,0,.12);
+}
+.nav-icon-logo {
+  width: 80px !important;
+  height: 80px !important;
+  background-color: #666 !important;
+  color: #fff !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+.nav-demo-title {
+  font-size: 16px;
+  margin-top: 16px;
+}
+.nav-demo-sub-title {
+  color: #d3d6db;
+  font-size: 14px;
+}
 </style>

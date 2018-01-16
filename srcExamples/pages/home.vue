@@ -202,35 +202,8 @@ export default {
 </script>
 
 <style lang="css" scoped>
-.icon-logo{
+.icon-logo {
   color: #666;
-}
-.ui-flex {
-  display: inline-block;
-  width: 100%;
-  height: auto;
-}
-.nav-icon-logo {
-  width: 80px;
-  height: 80px;
-  background-color: #666;
-  color: #fff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.nav-drawer-shadow {
-  box-shadow: 4px 0 18px 6px rgba(0,0,0,.12);
-}
-
-.nav-demo-title{
-  font-size: 16px;
-  margin-top: 16px;
-}
-
-.nav-demo-sub-title{
-  color: #d3d6db;
-  font-size: 14px;
 }
 
 .slide-enter-active, .slide-leave-active {
