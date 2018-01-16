@@ -1,5 +1,5 @@
 <template>
-<transition name="app">
+<transition name="slide">
 <div class="ui-page">
   <header-bar>
     <icon-button slot="left" @click.native="showNav" icon="menu"></icon-button>
@@ -201,7 +201,7 @@ export default {
 }
 </script>
 
-<style lang="css">
+<style lang="css" scoped>
 .icon-logo{
   color: #666;
 }
@@ -231,5 +231,14 @@ export default {
 .nav-demo-sub-title{
   color: #d3d6db;
   font-size: 14px;
+}
+
+.slide-enter-active, .slide-leave-active {
+  transition: opacity .6s;
+  transition-duration: none;
+}
+.slide-enter, .slide-leave-to {
+  opacity: 0;
+  transform: none;
 }
 </style>

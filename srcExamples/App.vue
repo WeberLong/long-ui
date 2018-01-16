@@ -57,10 +57,4 @@ export default {
   transform: translate3d(100%, 0, 0);
   overflow: hidden;
 }
-.app-enter-active, .app-leave-active {
-	transition: opacity .6s;
-}
-.app-enter, .app-leave-to {
-  opacity: 0;
-}
 </style>
