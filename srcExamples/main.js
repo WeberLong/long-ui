@@ -11,6 +11,24 @@ Vue.use(LongUI)
 
 Vue.config.productionTip = false
 
+let endTime = Date.now()
+document.addEventListener('touchend', () => {
+  endTime = Date.now()
+})
+
+router.beforeEach(function (to, from, next) {
+  if ((Date.now() - endTime) < 377) {
+    localStorage.setItem('updateDirection', JSON.stringify({
+      direction: 0
+    }))
+  } else {
+    localStorage.setItem('updateDirection', JSON.stringify({
+      direction: 1
+    }))
+  }
+  next()
+})
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

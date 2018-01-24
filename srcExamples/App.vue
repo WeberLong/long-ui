@@ -39,6 +39,15 @@ export default {
       navShow: false
     }
   },
+  // computed: {
+  //   direction () {
+  //     if (JSON.parse(localStorage.getItem('updateDirection'))) {
+  //       let direction = JSON.parse(localStorage.getItem('updateDirection')).direction
+  //       console.log('direction: ' + direction)
+  //       return direction
+  //     }
+  //   }
+  // },
   methods: {
     closeNav () {
       this.navShow = false
