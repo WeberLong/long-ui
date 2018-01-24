@@ -3,7 +3,7 @@
 <div class="ui-page">
   <header-bar>
     <icon-button slot="left" @click.native="showNav" icon="menu"></icon-button>
-    <span>{{direction}}:long-ui</span>
+    <span>long-ui</span>
     <icon-button slot="right" @click.native="goGithub" icon="github"></icon-button>
   </header-bar>
   <scroll-view ref="scroller">
@@ -185,15 +185,6 @@ export default {
   },
   deactivated () {
     scrollTop = this.$refs.scroller.$el.scrollTop
-  },
-  computed: {
-    direction () {
-      if (JSON.parse(localStorage.getItem('updateDirection'))) {
-        let direction = JSON.parse(localStorage.getItem('updateDirection')).direction
-        console.log('direction: ' + direction)
-        return direction
-      }
-    }
   },
   methods: {
     showNav () {
