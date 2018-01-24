@@ -1,5 +1,6 @@
 <template>
 <div id="app">
+  <!-- <transition :name="direction ? 'slide' : ''"> -->
   <transition name="slide">
     <keep-alive>
       <router-view></router-view>
@@ -41,8 +42,8 @@ export default {
   },
   // computed: {
   //   direction () {
-  //     if (JSON.parse(localStorage.getItem('updateDirection'))) {
-  //       let direction = JSON.parse(localStorage.getItem('updateDirection')).direction
+  //     if (JSON.parse(sessionStorage.getItem('updateDirection'))) {
+  //       let direction = JSON.parse(sessionStorage.getItem('updateDirection')).direction
   //       console.log('direction: ' + direction)
   //       return direction
   //     }
@@ -65,6 +66,13 @@ export default {
 .slide-enter, .slide-leave-to {
   transform: translate3d(100%, 0, 0);
   overflow: hidden;
+}
+
+.fade-enter-active, .fade-leave-active {
+	transition: all .3s linear;
+}
+.fade-enter, .fade-leave-to {
+  opacity: 0 !important;
 }
 
 .nav-drawer-shadow {

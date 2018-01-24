@@ -17,14 +17,21 @@ Vue.config.productionTip = false
 // })
 
 // router.beforeEach(function (to, from, next) {
+//   console.log(Date.now())
+//   console.log(endTime)
+//   console.log((Date.now() - endTime))
 //   if ((Date.now() - endTime) < 377) {
-//     localStorage.setItem('updateDirection', JSON.stringify({
+//     // 返回
+//     sessionStorage.setItem('updateDirection', JSON.stringify({
 //       direction: 0
 //     }))
+//     console.log('00000')
 //   } else {
-//     localStorage.setItem('updateDirection', JSON.stringify({
+//     // 前进
+//     sessionStorage.setItem('updateDirection', JSON.stringify({
 //       direction: 1
 //     }))
+//     console.log('11111')
 //   }
 //   next()
 // })
