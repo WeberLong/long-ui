@@ -17,8 +17,8 @@
           </item-title>
         </item-cell>
       </list>
-      <p v-if="nomore" style="text-align:center;"> -- 我是有底线的~ -- </p>      
-      <infinite-scroll v-else style="margin-bottom:16px;" trigger="scroller" @load-more="loadMore" :loading="loading"></infinite-scroll>
+      <p v-if="nomore" style="text-align:center;margin-bottom:16px;"> -- 我是有底线的~ -- </p>      
+      <infinite-scroll v-else style="margin-bottom:16px;" trigger="scroller" @load-more="loadMore" :loading="nomore"></infinite-scroll>
     </scroll-view>
   </div>
 </template>
@@ -29,8 +29,7 @@ export default {
     return {
       items: ['1', '2', '3', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20'],
       end: 20,
-      nomore: false,
-      loading: false
+      nomore: false
     }
   },
   methods: {
@@ -38,9 +37,7 @@ export default {
       window.history.back()
     },
     loadMore () {
-      this.loading = true
       setTimeout(() => {
-        this.loading = false
         if (this.end < 60) {
           for (let i = this.end; i < this.end + 20; i++) {
             this.items.push(String(i + 1))

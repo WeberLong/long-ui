@@ -1,7 +1,7 @@
 <template>
   <div class="ui-infinite-scroll">
-    <circular v-show="showLoad" :size="24" color="long"></circular>
-    <span v-show="showLoad" class="ui-infinite-scroll-text">正在加载。。。</span>
+    <circular v-show="!loading" :size="24" color="long"></circular>
+    <span v-show="!loading" class="ui-infinite-scroll-text">正在加载。。。</span>
   </div>
 </template>
 
@@ -18,24 +18,20 @@ export default {
       required: true
     }
   },
-  data () {
-    return {
-      showLoad: this.loading
-    }
-  },
   watch: {
     loading (val) {
-      this.showLoad = val
+      if (val) {
+        this.removeScrollListener()
+      }
     }
   },
   methods: {
     onscroll () {
-      if (this.showLoad) return
+      if (this.loading) return
       const scroller = this.trigger ? this.$parent.$parent.$refs[this.trigger].$el : null
       let h = scroller.scrollHeight - scroller.scrollTop - 5
       let sh = scroller.offsetHeight
       if (h <= sh) {
-        this.showLoad = true
         this.$emit('load-more')
       }
     },
