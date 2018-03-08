@@ -1,7 +1,7 @@
 <template>
-  <div class="ui-infinite-scroll">
-    <circular v-show="showLoad" :size="24" color="long"></circular>
-    <span v-show="showLoad" class="ui-infinite-scroll-text">正在加载。。。</span>
+  <div class="ui-scroll-more">
+    <circular v-show="loading" :size="24" color="colorOrange"></circular>
+    <span v-show="loading" class="ui-scroll-more-text">正在加载。。。</span>
   </div>
 </template>
 
@@ -16,47 +16,51 @@ export default {
     trigger: {
       type: String,
       required: true
-    }
-  },
-  data () {
-    return {
-      showLoad: this.loading
+    },
+    pushDistance: {
+      type: Number,
+      default: 5
+    },
+    noData: {
+      type: Boolean,
+      default: false
     }
   },
   watch: {
-    loading (val) {
-      this.showLoad = val
+    noData(newValue) {
+      if (newValue) this.removeScrollListener();
     }
   },
   methods: {
     onscroll () {
-      if (this.showLoad) return
-      const scroller = this.trigger ? this.$parent.$parent.$refs[this.trigger].$el : null
-      let h = scroller.scrollHeight - scroller.scrollTop - 5
-      let sh = scroller.offsetHeight
+      if (this.loading) return
+      
+      //h对应的是内容部分还有多少没有滚动到头
+      let h = this.scroller.scrollHeight - this.scroller.scrollTop - this.pushDistance;
+      //sh对应的是边界框的尺寸
+      let sh = this.scroller.offsetHeight
+      //h等于sh时内容容器滚动到容器的底部这时显示加载更多并抛出事件
       if (h <= sh) {
-        this.showLoad = true
         this.$emit('load-more')
       }
     },
     addScrollListener () {
-      this.handlerScroll = () => {
-        this.onscroll()
-      }
-      const triggerEl = this.trigger ? this.$parent.$parent.$refs[this.trigger].$el : null
-      triggerEl.addEventListener('scroll', this.handlerScroll, false)
+      this.triggerEl = this.trigger ? this.$parent.$refs[this.trigger] : null
+      this.scroller = this.trigger ? this.$parent.$refs[this.trigger] : null
+      this.triggerEl.addEventListener('scroll', this.onscroll, false)
     },
     removeScrollListener () {
-      if (!this.handlerScroll) return
-      const triggerEl = this.trigger ? this.$parent.$parent.$refs[this.trigger].$el : null
-      triggerEl.removeEventListener('scroll', this.handlerScroll, false)
-      this.handlerScroll = null
+      const triggerEl = this.trigger ? this.$parent.$refs[this.trigger] : null
+      if (!this.onscroll || !triggerEl) return
+      
+      triggerEl.removeEventListener('scroll', this.onscroll, false)
+      this.onscroll = null
     }
   },
-  activated () {
+  mounted () {
     this.addScrollListener()
   },
-  deactivated () {
+  beforeDestroy () {
     this.removeScrollListener()
   },
   components: {
@@ -66,7 +70,7 @@ export default {
 </script>
 
 <style lang="css">
-.ui-infinite-scroll{
+.ui-scroll-more {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -74,7 +78,7 @@ export default {
   line-height: 36px;
   width: 100%;
 }
-.ui-infinite-scroll-text{
+.ui-scroll-more-text {
   margin-left: 16px;
   font-size: 16px;
 }
