@@ -10,7 +10,7 @@
     <content-block>
       long-ui 是基于 vue 开发的material design ui 库。
     </content-block>
-    <template v-for="group in menus">
+    <div v-for="(group, k) in menus" :key="k">
       <content-title>{{group.title}}</content-title>
       <list>
         <item-cell link v-for="(menu, index) in group.children" :key="index" @click.native="goTo(menu.link)">
@@ -22,7 +22,7 @@
           </item-title>
         </item-cell>
       </list>
-    </template>
+    </div>
   </scroll-view>
 </div>
 </transition>
@@ -104,10 +104,6 @@ export default {
           icon: 'newspaper',
           title: 'Card',
           link: '/card'
-        }, {
-          icon: 'view_comfy',
-          title: 'Grid',
-          link: '/grid'
         }, {
           icon: 'file-text2',
           title: 'Content Block',

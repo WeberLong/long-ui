@@ -144,7 +144,6 @@ npm run examples
 │   │   ├── contentBlock.vue
 │   │   ├── dateSelect.vue
 │   │   ├── floatButton.vue
-│   │   ├── grid.vue
 │   │   ├── headerBar.vue
 │   │   ├── home.vue
 │   │   ├── icon.vue

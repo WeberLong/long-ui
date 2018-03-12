@@ -54,10 +54,6 @@ import cardImage from './components/card/cardImage'
 import contentBlock from './components/contentBlock/contentBlock'
 import contentTitle from './components/contentTitle/contentTitle'
 
-// grid
-import gridRow from './components/grid/gridRow'
-import gridCol from './components/grid/gridCol'
-
 // forms
 import formList from './components/forms/formList'
 import itemForm from './components/forms/itemForm'
@@ -123,8 +119,6 @@ var components = {
   'item-divider': itemDivider,
   'content-block': contentBlock,
   'content-title': contentTitle,
-  'grid-row': gridRow,
-  'grid-col': gridCol,
   card,
   'card-header': cardHeader,
   'card-footer': cardFooter,

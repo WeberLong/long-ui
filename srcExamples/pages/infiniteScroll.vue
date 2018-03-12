@@ -17,7 +17,7 @@
           </item-title>
         </item-cell>
       </list>
-      <p v-if="nomore" style="text-align:center;margin-bottom:16px;"> -- 我是有底线的~ -- </p>      
+      <p v-if="nomore" style="text-align:center;margin-bottom:16px;"> -- 我是有底线的~ -- </p>
       <infinite-scroll v-else style="margin-bottom:16px;" trigger="scroller" @load-more="loadMore" :loading="nomore"></infinite-scroll>
     </scroll-view>
   </div>

@@ -102,4 +102,3 @@ function getResult (val) {
     padding-top: 54px;
   }
 </style>
-

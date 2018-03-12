@@ -43,10 +43,11 @@ export default {
   }
 }
 .ui-item-link .ui-item-content {
-  .encoded-svg-background("<svg viewBox='0 0 60 120' xmlns='http://www.w3.org/2000/svg'><path d='m60 61.5-38.25 38.25-9.75-9.75 29.25-28.5-29.25-28.5 9.75-9.75z' fill='#989da3'/></svg>");
+  // .encoded-svg-background("<svg viewBox='0 0 60 120' xmlns='http://www.w3.org/2000/svg'><path d='m60 61.5-38.25 38.25-9.75-9.75 29.25-28.5-29.25-28.5 9.75-9.75z' fill='#989da3'/></svg>");
+  background-image: url("data:image/svg+xml;charset=utf-8,<svg viewBox='0 0 60 120' xmlns='http://www.w3.org/2000/svg'><path d='M60 61.5L21.75 99.75 12 90l29.25-28.5L12 33l9.75-9.75z' fill='#989da3'/></svg>");
   background-size: 10px 20px;
   background-repeat: no-repeat;
-  background-position: 95% center;
+  background-position: 96% center;
   padding-right: 42px;
 }
 </style>

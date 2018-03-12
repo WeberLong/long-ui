@@ -92,11 +92,6 @@ export default new Router({
       component: (resolve) => { require(['../pages/card'], resolve) }
     },
     {
-      path: '/grid',
-      name: 'grid',
-      component: (resolve) => { require(['../pages/grid'], resolve) }
-    },
-    {
       path: '/contentBlock',
       name: 'contentBlock',
       component: (resolve) => { require(['../pages/contentBlock'], resolve) }

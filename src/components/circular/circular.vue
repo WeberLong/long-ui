@@ -60,7 +60,6 @@ export default {
 
 }
 
-
 .spinner {
   position: absolute;
   width: 100%;
@@ -154,7 +153,6 @@ export default {
     -webkit-transform: rotate(-129deg);
     transform: rotate(-129deg);
 }
-
 
 @-webkit-keyframes fill-unfill-rotate {
   12.5% {
@@ -254,7 +252,6 @@ export default {
         transform: rotate(-130deg)
     }
 }
-
 
 @-webkit-keyframes container-rotate {
   to {

@@ -59,8 +59,6 @@ export default {
     }
   }
 }
-
-
 .ui-item-form-icon{
   width: 40px;
   height: 36px;
@@ -86,7 +84,6 @@ export default {
     padding: 0;
   }
 }
-
 
 .floating-label,
 .label {

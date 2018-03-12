@@ -5,7 +5,7 @@
       <icon value="arrow_drop_down"  @click.native="toggleSelect()"></icon>
       <div class="ui-select-drop-down" :class="{'up': up}" v-show="currentFocus">
         <ul class="ui-select-options">
-          <li v-for="option in options">
+          <li v-for="(option, index) in options" :key="index">
             <a href="javascript:;" ref="option" @click="select(option)"
               class="ui-select-option" :class="{'selected': isSelect(option)}">
               <div class="ui-select-option-content">

@@ -12,7 +12,7 @@ import circular from '../circular/circular'
 import * as domUtil from 'utils/domUtil'
 // import dom from 'utils/dom'
 const LENGTH = 130 // 下拉最大长度
-const INITY = -68  // 初始化Y轴位置
+const INITY = -68 // 初始化Y轴位置
 export default {
   props: {
     refreshing: {

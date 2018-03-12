@@ -15,167 +15,167 @@
       <div v-show="currentFloor" class="ui-indexlist-fixed" ref="fixed">
         <div class="fixed-title">{{currentFloor}}</div>
       </div>
-      
+
       <div class="ui-indexlist-indicator" v-if="showIndicator" v-show="moving">{{ currentIndicator }}</div>
     </div>
   </div>
 </template>
 
 <script>
-  import 'utils/iscroll-probe.js'
-  const TITLE_HEIGHT = 24
-  export default {
-    name: 'ui-index-list',
+import 'utils/iscroll-probe.js'
+const TITLE_HEIGHT = 24
+export default {
+  name: 'ui-index-list',
 
-    props: {
-      indexs: {
-        type: Array,
-        default () {
-          return []
-        }
-      },
-      height: Number,
-      showIndicator: {
-        type: Boolean,
-        default: true
+  props: {
+    indexs: {
+      type: Array,
+      default () {
+        return []
       }
     },
+    height: Number,
+    showIndicator: {
+      type: Boolean,
+      default: true
+    }
+  },
 
-    data () {
-      return {
-        myScroll: null,
-        scrollY: 0,
-        sections: [],
-        listHeight: [],
-        indicatorTime: null,
-        moving: false,
-        firstSection: null,
-        currentIndicator: '',
-        currentFloor: '',
-        navOffsetX: 0,
-        fixedTitleY: -1
-      }
+  data () {
+    return {
+      myScroll: null,
+      scrollY: 0,
+      sections: [],
+      listHeight: [],
+      indicatorTime: null,
+      moving: false,
+      firstSection: null,
+      currentIndicator: '',
+      currentFloor: '',
+      navOffsetX: 0,
+      fixedTitleY: -1
+    }
+  },
+
+  watch: {
+    sections () {
+      this.init()
     },
-
-    watch: {
-      sections () {
-        this.init()
-      },
-      scrollY (y) {
-        const listHeight = this.listHeight
-        const sections = this.sections
-        // 当滚动到顶部，y<=0
-        if (y > 0) {
-          this.currentFloor = ''
-          this.currentIndicator = ''
+    scrollY (y) {
+      const listHeight = this.listHeight
+      const sections = this.sections
+      // 当滚动到顶部，y<=0
+      if (y > 0) {
+        this.currentFloor = ''
+        this.currentIndicator = ''
+        return
+      }
+      // 在中间部分滚动
+      for (let i = 0; i < listHeight.length; i++) {
+        let height1 = listHeight[i]
+        let height2 = listHeight[i + 1]
+        if (-y >= height1 && -y < height2) {
+          this.currentFloor = sections[i]
+          this.currentIndicator = sections[i]
+          this.fixedTitleY = height2 + y
           return
         }
-        // 在中间部分滚动
-        for (let i = 0; i < listHeight.length; i++) {
-          let height1 = listHeight[i]
-          let height2 = listHeight[i + 1]
-          if (-y >= height1 && -y < height2) {
-            this.currentFloor = sections[i]
-            this.currentIndicator = sections[i]
-            this.fixedTitleY = height2 + y
-            return
-          }
-        }
-        // 当滚动到底部，且y大于最后一个元素的上限
-        if (-y >= listHeight.length - 1) {
-          this.currentFloor = sections[listHeight.length - 1]
-          this.currentIndicator = sections[listHeight.length - 1]
-        }
-      },
-      fixedTitleY (val) {
-        let fixedTop = (val > 0 && val < TITLE_HEIGHT) ? val - TITLE_HEIGHT : 0
-        if (this.fixedTop === fixedTop) {
-          return
-        }
-        this.fixedTop = fixedTop
-        this.$refs.fixed.style.transform = `translate3d(0,${fixedTop}px,0)`
+      }
+      // 当滚动到底部，且y大于最后一个元素的上限
+      if (-y >= listHeight.length - 1) {
+        this.currentFloor = sections[listHeight.length - 1]
+        this.currentIndicator = sections[listHeight.length - 1]
+      }
+    },
+    fixedTitleY (val) {
+      let fixedTop = (val > 0 && val < TITLE_HEIGHT) ? val - TITLE_HEIGHT : 0
+      if (this.fixedTop === fixedTop) {
+        return
+      }
+      this.fixedTop = fixedTop
+      this.$refs.fixed.style.transform = `translate3d(0,${fixedTop}px,0)`
+    }
+  },
+
+  methods: {
+    init () {
+      let listItems = this.$refs.content.getElementsByTagName('p')
+      if (listItems.length > 0) {
+        this.firstSection = listItems[0]
       }
     },
 
-    methods: {
-      init () {
-        let listItems = this.$refs.content.getElementsByTagName('p')
-        if (listItems.length > 0) {
-          this.firstSection = listItems[0]
-        }
-      },
-
-      handleTouchStart (e) {
-        if (e.target.tagName === 'LI' || e.target.tagName === 'SPAN') {
-          this.navOffsetX = e.changedTouches[0].clientX
-          this.scrollList(e.changedTouches[0].clientY)
-          if (this.indicatorTime) {
-            clearTimeout(this.indicatorTime)
-          }
-          this.moving = true
-          window.addEventListener('touchmove', this.handleTouchMove)
-          window.addEventListener('touchend', this.handleTouchEnd)
-        }
-      },
-
-      handleTouchMove (e) {
-        e.preventDefault()
+    handleTouchStart (e) {
+      if (e.target.tagName === 'LI' || e.target.tagName === 'SPAN') {
+        this.navOffsetX = e.changedTouches[0].clientX
         this.scrollList(e.changedTouches[0].clientY)
-      },
-
-      handleTouchEnd () {
-        this.indicatorTime = setTimeout(() => {
-          this.moving = false
-          this.currentIndicator = this.currentFloor
-        }, 500)
-        window.removeEventListener('touchmove', this.handleTouchMove)
-        window.removeEventListener('touchend', this.handleTouchEnd)
-      },
-
-      scrollList (y) {
-        let currentItem = document.elementFromPoint(this.navOffsetX, y)
-        if (currentItem.classList.contains('ui-indexlist-navitem') || currentItem.classList.contains('ui-indexlist-navitem-inner')) {
-          this.currentIndicator = currentItem.innerText
-          let targetDOM = this.$refs.content.querySelectorAll(`[data-index=${currentItem.innerText}]`)
-          if (targetDOM.length > 0) {
-            this.myScroll.scrollToElement(targetDOM[0], 0)
-            this.scrollY = this.myScroll.y
-          }
+        if (this.indicatorTime) {
+          clearTimeout(this.indicatorTime)
         }
-      },
-
-      calculateScrollHeight () {
-        this.listHeight = []
-        const list = document.querySelectorAll('[data-index]')
-        let height = 0
-        this.listHeight.push(height)
-        for (let i = 0; i < list.length; i++) {
-          let item = list[i]
-          height += item.clientHeight
-          this.listHeight.push(height)
-        }
+        this.moving = true
+        window.addEventListener('touchmove', this.handleTouchMove)
+        window.addEventListener('touchend', this.handleTouchEnd)
       }
-      // isPassive () {
-      //   let supportsPassiveOption = false
-      //   try {
-      //     addEventListener('test', null, Object.defineProperty({}, 'passive', {
-      //       get: function () {
-      //         supportsPassiveOption = true
-      //       }
-      //     }))
-      //   } catch (e) {}
-      //   return supportsPassiveOption
-      // }
     },
 
-    mounted () {
-      const self = this
-      if (self.indexs.length) {
-        self.sections = self.indexs
+    handleTouchMove (e) {
+      e.preventDefault()
+      this.scrollList(e.changedTouches[0].clientY)
+    },
+
+    handleTouchEnd () {
+      this.indicatorTime = setTimeout(() => {
+        this.moving = false
+        this.currentIndicator = this.currentFloor
+      }, 500)
+      window.removeEventListener('touchmove', this.handleTouchMove)
+      window.removeEventListener('touchend', this.handleTouchEnd)
+    },
+
+    scrollList (y) {
+      let currentItem = document.elementFromPoint(this.navOffsetX, y)
+      if (currentItem.classList.contains('ui-indexlist-navitem') || currentItem.classList.contains('ui-indexlist-navitem-inner')) {
+        this.currentIndicator = currentItem.innerText
+        let targetDOM = this.$refs.content.querySelectorAll(`[data-index=${currentItem.innerText}]`)
+        if (targetDOM.length > 0) {
+          this.myScroll.scrollToElement(targetDOM[0], 0)
+          this.scrollY = this.myScroll.y
+        }
       }
-      self.calculateScrollHeight()
-      self.init()
-      /* eslint-disable */
+    },
+
+    calculateScrollHeight () {
+      this.listHeight = []
+      const list = document.querySelectorAll('[data-index]')
+      let height = 0
+      this.listHeight.push(height)
+      for (let i = 0; i < list.length; i++) {
+        let item = list[i]
+        height += item.clientHeight
+        this.listHeight.push(height)
+      }
+    }
+    // isPassive () {
+    //   let supportsPassiveOption = false
+    //   try {
+    //     addEventListener('test', null, Object.defineProperty({}, 'passive', {
+    //       get: function () {
+    //         supportsPassiveOption = true
+    //       }
+    //     }))
+    //   } catch (e) {}
+    //   return supportsPassiveOption
+    // }
+  },
+
+  mounted () {
+    const self = this
+    if (self.indexs.length) {
+      self.sections = self.indexs
+    }
+    self.calculateScrollHeight()
+    self.init()
+    /* eslint-disable */
       self.myScroll = new IScroll('#wrapper', { probeType: 3, mouseWheel: true })
       self.myScroll.on('scroll', () => { self.scrollY = self.myScroll.y })
       self.myScroll.on('scrollEnd', () => { self.scrollY = self.myScroll.y })

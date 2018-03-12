@@ -106,7 +106,7 @@ export default {
   align-items: center;
   justify-content: center;
   background-color: rgba(0, 0, 0, 0.7)!important;
-  color: #fff;  
+  color: #fff;
 }
 .demo-popup-left{
   display: flex;

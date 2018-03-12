@@ -61,20 +61,20 @@ export default {
   text-align: center;
 }
 .ui-refresh-animate {
-  -webkit-animation: refresh 0.8s linear infinite;  
+  -webkit-animation: refresh 0.8s linear infinite;
   animation: refresh 0.8s linear infinite;
 }
 @-webkit-keyframes refresh {
   0% {
     -webkit-transform: rotate(0deg);
     -ms-transform: rotate(0deg);
-    -o-transform: rotate(0deg); 
+    -o-transform: rotate(0deg);
     transform: rotate(0deg);
   }
   100% {
     -webkit-transform: rotate(360deg);
     -ms-transform: rotate(360deg);
-    -o-transform: rotate(360deg); 
+    -o-transform: rotate(360deg);
     transform: rotate(360deg);
     background:white;
     color:blue;
@@ -84,13 +84,13 @@ export default {
   0% {
     -webkit-transform: rotate(0deg);
     -ms-transform: rotate(0deg);
-    -o-transform: rotate(0deg); 
+    -o-transform: rotate(0deg);
     transform: rotate(0deg);
   }
   100% {
     -webkit-transform: rotate(360deg);
     -ms-transform: rotate(360deg);
-    -o-transform: rotate(360deg); 
+    -o-transform: rotate(360deg);
     transform: rotate(360deg);
   }
 }

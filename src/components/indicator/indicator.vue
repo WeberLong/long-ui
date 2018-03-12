@@ -33,7 +33,7 @@ export default {
       default: ''
     },
     type: {
-      type: String,   // toast / modal
+      type: String, // toast / modal
       default: 'toast'
     },
     overlayOpacity: {

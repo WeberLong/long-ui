@@ -4,7 +4,6 @@
 </div>
 </template>
 
-
 <style lang="css">
 .ui-nav-menu-header{
   color: #bbbfc4;

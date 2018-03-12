@@ -63,7 +63,6 @@ export default {
   z-index: 1000;
 }
 
-
 // .ui-overlay-fade-transition {
 //   transition: all .3s linear;
 //   &.ui-overlay-fade-enter,

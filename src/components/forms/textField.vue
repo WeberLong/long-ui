@@ -6,14 +6,13 @@
         :type="type"
         ref="input"
         v-if="type!=='textarea'"
-        :value="currentValue"
+        v-model="currentValue"
         @focus="currentFocus = true"
         @blur="currentFocus = false"
         @change="$emit('change', currentValue)"
         @input="handleInput"
         :placeholder="placeholder">
       <textarea
-        :value="currentValue"
         ref="textarea"
         :style="{'height': height + 'px'}"
         class="resizable"

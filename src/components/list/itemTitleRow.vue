@@ -4,7 +4,6 @@
   </div>
 </template>
 
-
 <style lang="less">
 .ui-item-title-row{
   display: flex;
