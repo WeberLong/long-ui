@@ -1,5 +1,5 @@
 <template>
-<transition name="slide">
+<transition name="fade">
 <div class="ui-page">
   <header-bar>
     <icon-button slot="left" @click.native="showNav" icon="menu"></icon-button>
@@ -209,5 +209,14 @@ export default {
 .slide-enter, .slide-leave-to {
   opacity: 0;
   transform: none;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: all 0.3s linear;
+}
+.fade-enter,
+.fade-leave-to {
+  opacity: 0 !important;
 }
 </style>

@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <!-- <transition :name="direction ? 'slide' : ''"> -->
-    <transition name="slide">
+    <transition name="fade">
       <keep-alive>
         <router-view></router-view>
       </keep-alive>
