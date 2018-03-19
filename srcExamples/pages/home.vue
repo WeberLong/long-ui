@@ -1,5 +1,5 @@
 <template>
-<transition name="fade">
+<transition name="fade" mode="out-in">
 <div class="ui-page">
   <header-bar>
     <icon-button slot="left" @click.native="showNav" icon="menu"></icon-button>
@@ -213,7 +213,7 @@ export default {
 
 .fade-enter-active,
 .fade-leave-active {
-  transition: all 0.3s linear;
+  transition: opacity .3s;
 }
 .fade-enter,
 .fade-leave-to {

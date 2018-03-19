@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <!-- <transition :name="direction ? 'slide' : ''"> -->
-    <transition name="fade">
+    <transition name="fade" mode="out-in">
       <keep-alive>
         <router-view></router-view>
       </keep-alive>
@@ -73,7 +73,7 @@ export default {
 
 .fade-enter-active,
 .fade-leave-active {
-  transition: all 0.3s linear;
+  transition: opacity .3s;
 }
 .fade-enter,
 .fade-leave-to {
