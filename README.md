@@ -16,6 +16,7 @@ vue2 + vue-router + webpack + icomoon + less + jsx
 - 图标icons: [icomoon](https://icomoon.io/#home)
 - 代码风格检查：eslint
 - 源码：es6
+- 组件的设计与使用：[component](component.md)
 
 
 ## Build Setup
