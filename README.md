@@ -2,9 +2,9 @@
 
 #### 一个基于Vue2.x的移动端UI long-ui
 
-Demo: <a href="http://long.httpds.com/"> http://long.httpds.com/ </a>
+Demo: <a href="http://www.weberlong.com/"> http://www.weberlong.com/ </a>
 
-![](./static/image/demo-long-ui-code.png)
+![](./static/image/long-ui-demo-code.png)
 
 
 ## 技术栈
