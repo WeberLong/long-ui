@@ -7,6 +7,7 @@
 
 <script>
 import circular from '../circular/circular'
+import { debounce } from 'utils/debounce.js'
 export default {
   props: {
     loading: {
@@ -37,7 +38,10 @@ export default {
     },
     addScrollListener () {
       this.handlerScroll = () => {
-        this.onscroll()
+        debounce(() => {
+        // 函数节流
+          this.onscroll()
+        }, 300)
       }
       const triggerEl = this.trigger ? this.$parent.$parent.$refs[this.trigger].$el : null
       triggerEl.addEventListener('scroll', this.handlerScroll, false)

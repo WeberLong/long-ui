@@ -175,10 +175,13 @@ export default {
       const {positions, anchorPos} = this.getPositions(anchorOrigin, targetOrigin)
 
       if (targetPosition.top < 0 || targetPosition.top + target.bottom > window.innerHeight) {
+        console.log('000')
         let newTop = anchor[anchorPos.vertical] - target[positions.y[0]]
         if (newTop + target.bottom <= window.innerHeight) {
+          console.log('111')
           targetPosition.top = Math.max(0, newTop)
         } else {
+          console.log('222')
           newTop = anchor[anchorPos.vertical] - target[positions.y[1]]
           if (newTop + target.bottom <= window.innerHeight) targetPosition.top = Math.max(0, newTop)
         }
