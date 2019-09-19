@@ -1,11 +1,11 @@
 <template>
 <div class="ui-page">
-  <header-bar>
+  <header-bar class="header-fix">
     <icon-button slot="left" @click.native="back" :size="36" icon="navigate_before"></icon-button>
     <span>Refresh Control</span>
     <icon-button slot="right" @click.native="refresh" icon="spinner11" :class="[refreshing ? 'ui-refresh-animate' : '']"></icon-button>
   </header-bar>
-  <scroll-view ref="trigger">
+  <scroll-view ref="trigger" class="scroll-content">
     <refresh-control @refresh="refresh" :trigger="trigger" :refreshing="refreshing"></refresh-control>
     <content-block>
       <p class="refresh-desc">
@@ -57,6 +57,14 @@ export default {
 </script>
 
 <style lang="less" scoped>
+.header-fix {
+  position: fixed;
+  top: 0;
+  z-index: 999;
+}
+.scroll-content {
+  padding-top: 54px;
+}
 .refresh-desc {
   text-align: center;
 }
