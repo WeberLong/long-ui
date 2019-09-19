@@ -73,6 +73,10 @@ export default {
           icon: 'sort-numeric-asc',
           title: 'Number Animate',
           link: '/numberAnimate'
+        }, {
+          icon: 'images',
+          title: 'Swiper',
+          link: '/swiper'
         }]
       }, {
         title: 'CSS',

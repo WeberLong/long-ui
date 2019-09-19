@@ -1,4 +1,4 @@
-import { objectAssign } from '@/utils/objectAssign.js'
+import { objectAssign } from 'utils/objectAssign.js'
 
 const arrayFrom = (nodeList) => Array.prototype.slice.call(nodeList)
 

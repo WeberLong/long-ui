@@ -153,10 +153,10 @@ export default {
         minMovingDistance: this.minMovingDistance,
         imgList: this.imgList
       })
-      .on('swiped', (prev, index) => {
-        this.current = index % this.length
-        this.index = index % this.length
-      })
+        .on('swiped', (prev, index) => {
+          this.current = index % this.length
+          this.index = index % this.length
+        })
       if (index > 0) {
         this.swiper.go(index)
       }

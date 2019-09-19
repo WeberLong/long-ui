@@ -82,6 +82,8 @@ import navMenu from './components/nav/navMenu'
 import navDivider from './components/nav/navDivider'
 import navMenuHeader from './components/nav/navMenuHeader'
 import numberAnimate from './components/numberAnimate/numberAnimate'
+import swiper from './components/swiper/swiper.vue'
+import swiperItem from './components/swiper/swiper-item.vue'
 
 var components = {
   'scroll-view': scrollView,
@@ -149,7 +151,9 @@ var components = {
   'nav-menu': navMenu,
   'nav-divider': navDivider,
   'nav-menu-header': navMenuHeader,
-  'number-animate': numberAnimate
+  'number-animate': numberAnimate,
+  'swiper': swiper,
+  'swiper-item': swiperItem
 }
 
 export default {

@@ -57,6 +57,11 @@ export default new Router({
       component: (resolve) => { require(['../pages/numberAnimate'], resolve) }
     },
     {
+      path: '/swiper',
+      name: 'swiper',
+      component: (resolve) => { require(['../pages/swiper'], resolve) }
+    },
+    {
       path: '/headerBar',
       name: 'headerBar',
       component: (resolve) => { require(['../pages/headerBar'], resolve) }
