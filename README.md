@@ -2,7 +2,7 @@
 
 #### 一个基于Vue2.x的移动端UI long-ui
 
-Demo: <a href="http://www.weberlong.com/"> http://www.weberlong.com/ </a>
+Demo: <a href="https://weberlong.github.io/long-ui/"> https://weberlong.github.io/long-ui/ </a>
 
 ![](./example/assets/long-ui-demo-code.png)
 
