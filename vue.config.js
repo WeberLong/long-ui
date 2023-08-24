@@ -4,7 +4,7 @@ module.exports = defineConfig({
   transpileDependencies: true,
   lintOnSave: false,
 
-  publicPath: '/long-ui/',
+  publicPath: process.env.NODE_ENV === 'production' ? '/long-ui/' : '/',
 
   pages: {
     index: {

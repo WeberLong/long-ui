@@ -1,6 +1,5 @@
 <template>
   <div id="app">
-    <!-- <transition :name="direction ? 'slide' : ''"> -->
     <transition name="fade" mode="out-in">
       <keep-alive>
         <router-view></router-view>
