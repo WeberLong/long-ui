@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import 'utils/iscroll-probe.js'
+import IScroll from 'utils/iscroll-probe.js'
 const TITLE_HEIGHT = 24
 export default {
   name: 'ui-index-list',
@@ -175,22 +175,25 @@ export default {
     }
     self.calculateScrollHeight()
     self.init()
+    self.myScroll = new IScroll('#wrapper', { probeType: 3, mouseWheel: true })
+    self.myScroll.on('scroll', () => { self.scrollY = self.myScroll.y })
+    self.myScroll.on('scrollEnd', () => { self.scrollY = self.myScroll.y })
     /* eslint-disable */
-      self.myScroll = new IScroll('#wrapper', { probeType: 3, mouseWheel: true })
-      self.myScroll.on('scroll', () => { self.scrollY = self.myScroll.y })
-      self.myScroll.on('scrollEnd', () => { self.scrollY = self.myScroll.y })
+      // self.myScroll = new IScroll('#wrapper', { probeType: 3, mouseWheel: true })
+      // self.myScroll.on('scroll', () => { self.scrollY = self.myScroll.y })
+      // self.myScroll.on('scrollEnd', () => { self.scrollY = self.myScroll.y })
       // document.addEventListener(
       //   'touchmove',
       //   function (e) { e.preventDefault() },
       //   self.isPassive() ? {capture: false, passive: false} : false
       // )
-    },
+  },
 
-    beforeDestroy () {
-      this.myScroll.destroy()
-      this.myScroll = null
-    }
+  beforeDestroy () {
+    this.myScroll.destroy()
+    this.myScroll = null
   }
+}
 </script>
 
 <style lang="less">
