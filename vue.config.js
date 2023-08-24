@@ -4,6 +4,8 @@ module.exports = defineConfig({
   transpileDependencies: true,
   lintOnSave: false,
 
+  publicPath: '/long-ui/',
+
   pages: {
     index: {
       entry: 'example/main.js',
