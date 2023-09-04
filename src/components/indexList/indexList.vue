@@ -175,9 +175,11 @@ export default {
     }
     self.calculateScrollHeight()
     self.init()
-    self.myScroll = new IScroll('#wrapper', { probeType: 3, mouseWheel: true })
-    self.myScroll.on('scroll', () => { self.scrollY = self.myScroll.y })
-    self.myScroll.on('scrollEnd', () => { self.scrollY = self.myScroll.y })
+    this.$nextTick(() => {
+      self.myScroll = new IScroll('#wrapper', { probeType: 3, mouseWheel: true })
+      self.myScroll.on('scroll', () => { self.scrollY = self.myScroll.y })
+      self.myScroll.on('scrollEnd', () => { self.scrollY = self.myScroll.y })
+    })
     /* eslint-disable */
       // self.myScroll = new IScroll('#wrapper', { probeType: 3, mouseWheel: true })
       // self.myScroll.on('scroll', () => { self.scrollY = self.myScroll.y })
