@@ -8,6 +8,7 @@
     <img src="https://avatars2.githubusercontent.com/u/20940232?v=4&u=c4312b730f23f13d16e12a384ba82a2be7156ae5&s=400" class="about-icon"/>
     <div class="about-name">WeberLong</div>
     <icon-button icon="github" :size="36" color="long" @click.native="go"></icon-button>
+    <div class="about-blog" @click="goToBlog">Blog</div>
   </scroll-view>
 </div>
 </template>
@@ -20,7 +21,10 @@ export default {
     },
     go () {
       window.open('https://github.com/WeberLong/long-ui')
-    }
+    },
+    goToBlog () {
+      window.open('https://weberlong.github.io')
+    },
   }
 }
 </script>
@@ -33,8 +37,8 @@ export default {
 }
 
 .about-name {
-    font-size: 22px;
-    margin: 16px 0;
+  font-size: 22px;
+  margin: 16px 0;
 }
 .about-link {
   font-size: 18px;
@@ -46,5 +50,10 @@ export default {
   align-items: center;
   flex-direction: column;
   margin-top: 80px;
+}
+.about-blog {
+  font-size: 18px;
+  color: #1677ff;
+  margin: 16px 0;
 }
 </style>

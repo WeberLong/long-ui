@@ -28,6 +28,7 @@
       <router-link to="/about">
         <nav-menu @click.native="closeNav()" icon="notification" title="关于"></nav-menu>
       </router-link>
+      <nav-menu @click.native="goToBlog" icon="blog" title="博客"></nav-menu>
     </nav-drawer>
   </div>
 </template>
@@ -52,7 +53,10 @@ export default {
   methods: {
     closeNav () {
       this.navShow = false
-    }
+    },
+    goToBlog () {
+      window.open('https://weberlong.github.io')
+    },
   }
 }
 </script>
@@ -80,6 +84,7 @@ export default {
 }
 
 .nav-drawer-shadow {
+  max-width: 300px;
   box-shadow: 4px 0 18px 6px rgba(0, 0, 0, 0.12);
 }
 .nav-icon-logo {
