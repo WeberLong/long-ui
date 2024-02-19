@@ -176,6 +176,16 @@ export default new Router({
       component: (resolve) => { require(['../pages/picker'], resolve) }
     },
     {
+      path: '/cesium',
+      name: 'cesium',
+      component: (resolve) => { require(['../pages/cesium'], resolve) }
+    },
+    {
+      path: '/cesiumTerrain',
+      name: 'cesiumTerrain',
+      component: (resolve) => { require(['../pages/cesiumTerrain'], resolve) }
+    },
+    {
       path: '/about',
       name: 'about',
       component: (resolve) => { require(['../pages/about'], resolve) }

@@ -175,6 +175,17 @@ export default {
           title: 'Picker',
           link: '/picker'
         }]
+      }, {
+        title: 'Other',
+        children: [{
+          icon: 'earth',
+          title: 'Cesium',
+          link: '/cesium'
+        }, {
+          icon: 'earth',
+          title: 'Cesium Terrain',
+          link: '/cesiumTerrain'
+        }]
       }]
     }
   },
