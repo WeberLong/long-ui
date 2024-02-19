@@ -8,16 +8,11 @@
       <div class="cesium-viewer-demo" ref="viewerContainer">
         <vc-viewer
           ref="vcViewer"
+          :camera="camera"
           :animation="animation"
-          :base-layer-picker="baseLayerPicker"
           :timeline="timeline"
-          :fullscreen-button="fullscreenButton"
-          :fullscreen-element="fullscreenElement"
-          :info-box="infoBox"
           @ready="ready"
         >
-          <vc-navigation></vc-navigation>
-          <vc-map-overview></vc-map-overview>
           <vc-layer-imagery>
             <vc-provider-imagery-tianditu map-style="img_c" :token="tk"></vc-provider-imagery-tianditu>
           </vc-layer-imagery>
@@ -28,19 +23,8 @@
         <div class="demo-tool">
           <span>动画部件</span>
           <ui-switch v-model="animation"></ui-switch>
-          <!-- <md-switch v-model="animation"></md-switch> -->
           <span>时间轴部件</span>
           <ui-switch v-model="timeline"></ui-switch>
-          <!-- <md-switch v-model="timeline"></md-switch> -->
-          <span>基础图层拾取器</span>
-          <ui-switch v-model="baseLayerPicker"></ui-switch>
-          <!-- <md-switch v-model="baseLayerPicker"></md-switch> -->
-          <span>全屏按钮</span>
-          <ui-switch v-model="fullscreenButton"></ui-switch>
-          <!-- <md-switch v-model="fullscreenButton"></md-switch> -->
-          <span>信息提示框</span>
-          <ui-switch v-model="infoBox"></ui-switch>
-          <!-- <md-switch v-model="infoBox"></md-switch> -->
         </div>
       </div>
     </scroll-view>
@@ -50,8 +34,6 @@
   import Vue from 'vue';
   import VueCesium, { VcOverviewMap } from 'vue-cesium';
   import 'vue-cesium/lib/style.css';
-  import 'vue-cesium/lib/vc-navigation.css';
-  import 'vue-cesium/lib/vc-navigation-sm.css';
   import 'vue-cesium/lib/vc-map-overview.css';
   Vue.use(VueCesium, {
     cesiumPath: 'https://unpkg.com/cesium@1.100/Build/Cesium/Cesium.js',
@@ -68,16 +50,23 @@
       return {
         animation: true,
         timeline: true,
-        baseLayerPicker: false,
-        fullscreenButton: true,
-        infoBox: true,
         fullscreenElement: document.body,
-        tk: '436ce7e50d27eede2f2929307e6b33c0'
+        tk: '436ce7e50d27eede2f2929307e6b33c0',
+        camera: {
+          position: {
+            x: -1336250.5076601694,
+            y: 5333101.760774733,
+            z: 3229877.420756886
+          },
+          heading: 6.259802922203329,
+          pitch: -1.5382656190477708,
+          roll: 0
+        }
       }
     },
     mounted() {
       this.$refs.vcViewer.createPromise.then(() => {
-        console.log('viewer is loaded.')
+        console.log('cesium viewer is loaded.')
       })
     },
     methods: {
@@ -87,21 +76,7 @@
         viewer.scene.globe.enableLighting = true
         this.fullscreenElement = this.$refs.viewerContainer
         viewer.entities.add({
-          id: '武汉欢迎你',
-          position: Cesium.Cartesian3.fromDegrees(114.29, 30.59, 100),
-          // billboard: new Cesium.BillboardGraphics({
-          //   image: 'https://zouyaoji.top/vue-cesium/favicon.png',
-          //   scale: 0.1
-          // }),
-          // label: new Cesium.LabelGraphics({
-          //   text: 'Hello Cesium',
-          //   font: '24px sans-serif',
-          //   horizontalOrigin: 1,
-          //   outlineColor: new Cesium.Color(0, 0, 0, 1),
-          //   outlineWidth: 2,
-          //   pixelOffset: new Cesium.Cartesian2(17, -5),
-          //   style: Cesium.LabelStyle.FILL
-          // })
+          position: Cesium.Cartesian3.fromDegrees(114.29, 30.59, 50),
         })
       },
 
